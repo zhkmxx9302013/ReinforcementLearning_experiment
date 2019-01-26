@@ -4,7 +4,7 @@
 实验结果主要以gym的实验结果为主，有一些实验是在自己实现的一套1v1 6DoF飞行器博弈仿真环境做的实验，该环境较为复杂，对各种算法也有更加全面的验证。
 
 ## DQN系列
-已完成：
+已完成：     
 [Nature DQN](http://www.nature.com/articles/nature14236)      
 [Double DQN](https://arxiv.org/abs/1509.06461)     
 [Dueling DDQN](https://arxiv.org/abs/1511.06581)     

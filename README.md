@@ -5,12 +5,12 @@
 
 ## DQN系列
 已完成：
-[Nature DQN](http://www.nature.com/articles/nature14236)
-[Double DQN](https://arxiv.org/abs/1509.06461)
-[Dueling DDQN](https://arxiv.org/abs/1511.06581)
+[Nature DQN](http://www.nature.com/articles/nature14236)      
+[Double DQN](https://arxiv.org/abs/1509.06461)     
+[Dueling DDQN](https://arxiv.org/abs/1511.06581)     
 
 三类算法对比：
 1. gym CartPole-v0 环境：
 ![x](https://res.cloudinary.com/djhkiiiap/image/upload/v1548387003/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190125112753.png)
-2. 1v1 6DoF飞行器博弈仿真环境做的实验
+2. 1v1 6DoF飞行器博弈仿真环境做的实验(mean_reward越大越优)
 ![x](https://res.cloudinary.com/djhkiiiap/image/upload/v1548492902/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190126165446.png)

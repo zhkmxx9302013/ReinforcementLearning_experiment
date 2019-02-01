@@ -1,0 +1,43 @@
+<scheme name="zhkmxx930_Scheme" version="142" parent_scheme="Default">
+  <metaInfo>
+    <property name="created">2019-02-01T21:45:49</property>
+    <property name="ide">Python</property>
+    <property name="ideVersion">2018.1.1.0.0</property>
+    <property name="modified">2019-02-01T21:45:51</property>
+    <property name="originalScheme">zhkmxx930_Scheme</property>
+  </metaInfo>
+  <attributes>
+    <option name="PY.DOC_COMMENT">
+      <value>
+        <option name="FOREGROUND" value="800800" />
+        <option name="BACKGROUND" value="fff6f9" />
+        <option name="FONT_TYPE" value="2" />
+        <option name="EFFECT_COLOR" value="ffb996" />
+      </value>
+    </option>
+    <option name="PY.FUNCTION_CALL">
+      <value>
+        <option name="FOREGROUND" value="4946" />
+      </value>
+    </option>
+    <option name="PY.FUNC_DEFINITION">
+      <value>
+        <option name="FOREGROUND" value="4946" />
+        <option name="EFFECT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="PY.LINE_COMMENT">
+      <value>
+        <option name="FOREGROUND" value="379c72" />
+        <option name="FONT_TYPE" value="2" />
+        <option name="EFFECT_COLOR" value="fff2bd" />
+        <option name="EFFECT_TYPE" value="5" />
+      </value>
+    </option>
+    <option name="PY.METHOD_CALL">
+      <value>
+        <option name="FOREGROUND" value="651abb" />
+      </value>
+    </option>
+  </attributes>
+</scheme>

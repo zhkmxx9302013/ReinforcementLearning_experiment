@@ -8,9 +8,13 @@
 [Nature DQN](http://www.nature.com/articles/nature14236)      
 [Double DQN](https://arxiv.org/abs/1509.06461)     
 [Dueling DDQN](https://arxiv.org/abs/1511.06581)     
-
+[DQN_IN_PROJECT](https://github.com/zhkmxx9302013/ReinforcementLearning_experiment/tree/master/DQN_IN_PROJECT)目录为整理成项目架构形式的算法，可以兼容以上三种算法，将网络结构，agent学习，主程序分开封装。
 三类算法对比：
 1. gym CartPole-v0 环境：
 ![x](https://res.cloudinary.com/djhkiiiap/image/upload/v1548387003/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190125112753.png)
 2. 1v1 6DoF飞行器博弈仿真环境做的实验(mean_reward越大越优)
 ![x](https://res.cloudinary.com/djhkiiiap/image/upload/v1548492902/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190126165446.png)
+
+
+## @Todo
+* DRQN 考虑加入部分可观马尔科夫时序处理

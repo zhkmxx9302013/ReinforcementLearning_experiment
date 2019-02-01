@@ -1,9 +1,6 @@
 import tensorflow as tf
-from util import TARGET_SCOPE, MAIN_SCOPE
-import numpy as np
-import random
-from collections import deque
 import tensorflow.contrib.slim as slim
+
 
 class Network:
     def __init__(self, state_dim, action_dim, duelingDQN, scope_name):
@@ -48,7 +45,8 @@ class Network:
 
                 with tf.variable_scope(scope_name + '_Q'):
                     # Q Value # 合并 V 和 A, 为了不让 A 直接学成了 Q, 我们减掉了 A 的均值
-                    self.Q_value = self.V + (self.A - tf.reduce_mean(self.A, axis=1, keep_dims=True))  # Q = V(s) + A(s,a)
+                    self.Q_value = self.V + (
+                            self.A - tf.reduce_mean(self.A, axis=1, keep_dims=True))  # Q = V(s) + A(s,a)
             else:
                 with tf.variable_scope(scope_name + '_Q'):
                     self.Q_value = slim.fully_connected(layer1,
@@ -57,10 +55,6 @@ class Network:
                                                         weights_initializer=tf.truncated_normal_initializer(stddev=1),
                                                         biases_initializer=tf.constant_initializer(0.01)
                                                         )
-
-
-
-
 
     def __weight_variable(self, shape):
         """

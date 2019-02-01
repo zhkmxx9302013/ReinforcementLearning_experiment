@@ -62,8 +62,6 @@ class Agent:
         session.run(tf.global_variables_initializer())
         pass
 
-
-
     def init_checkpoint(self):
         """
         Init checkpoint directory.

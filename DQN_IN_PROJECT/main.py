@@ -23,6 +23,7 @@ CKPT_DIR = './model/DuelingDDQN'
 ENV_NAME = 'CartPole-v0'
 EPISODE = 3000  # Episode limitation
 
+
 def main():
     # initialize OpenAI Gym env and dqn agent
     # env = Environment()

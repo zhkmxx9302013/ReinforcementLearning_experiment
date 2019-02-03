@@ -21,6 +21,6 @@
 
 
 ## @Todo
--[x] DRQN 考虑加入部分可观马尔科夫时序处理
--[x] Multistep DQN
--[] Priority Replay buffer
+- [x] DRQN 考虑加入部分可观马尔科夫时序处理
+- [x] Multistep DQN
+- [] Priority Replay buffer

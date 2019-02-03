@@ -5,11 +5,11 @@
 
 ## DQN系列
 已完成：     
-[Nature DQN](http://www.nature.com/articles/nature14236)      
-[Double DQN](https://arxiv.org/abs/1509.06461)     
-[Dueling DDQN](https://arxiv.org/abs/1511.06581)
-[DRQN](https://arxiv.org/abs/1507.06527)
-[Multistep DQN](https://arxiv.org/abs/1703.01327)       
+1. [Nature DQN](http://www.nature.com/articles/nature14236)      
+2. [Double DQN](https://arxiv.org/abs/1509.06461)     
+3. [Dueling DDQN](https://arxiv.org/abs/1511.06581)    
+4. [DRQN](https://arxiv.org/abs/1507.06527)    
+5. [Multistep DQN](https://arxiv.org/abs/1703.01327)           
 
 [DQN_IN_PROJECT](https://github.com/zhkmxx9302013/ReinforcementLearning_experiment/tree/master/DQN_IN_PROJECT)目录为整理成项目架构形式的算法，可以兼容以上五种算法，将网络结构，agent学习，主程序分开封装。      
 

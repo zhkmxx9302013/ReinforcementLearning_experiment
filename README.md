@@ -24,3 +24,16 @@
 - [x] DRQN 考虑加入部分可观马尔科夫时序处理
 - [x] Multistep DQN
 - [ ] Priority Replay buffer
+
+---
+
+## 非确定性PG系列
+
+已完成:
+
+1. PPO2 (Clip advantage)
+2. 加入 exploration curriculum  参考 [Emergent Complexity via Multi-agent Competition](https://arxiv.org/abs/1710.03748)
+
+代码在[PPO2](https://github.com/zhkmxx9302013/ReinforcementLearning_experiment/tree/master/PPO2)部分
+
+![](https://res.cloudinary.com/djhkiiiap/image/upload/v1554520369/%E6%9C%AA%E6%A0%87%E9%A2%98-2.png)

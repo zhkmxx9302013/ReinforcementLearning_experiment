@@ -20,7 +20,7 @@
 ![x](https://res.cloudinary.com/djhkiiiap/image/upload/v1548492902/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190126165446.png)
 
 
-## @Todo
+### @Todo
 - [x] DRQN 考虑加入部分可观马尔科夫时序处理
 - [x] Multistep DQN
 - [ ] Priority Replay buffer
@@ -37,3 +37,23 @@
 代码在[PPO2](https://github.com/zhkmxx9302013/ReinforcementLearning_experiment/tree/master/PPO2)部分
 
 ![](https://res.cloudinary.com/djhkiiiap/image/upload/v1554520369/%E6%9C%AA%E6%A0%87%E9%A2%98-2.png)
+
+---
+
+## 模仿学习系列
+
+已完成:
+
+1. GAIL (WGAN-GP)
+2. PPO2
+3. exploration curriculum
+4. seprate net
+
+代码在[GAIL](https://github.com/zhkmxx9302013/ReinforcementLearning_experiment/tree/master/GAIL)
+
+
+
+### @Todo
+
+- [x] VAE [VAE](https://github.com/zhkmxx9302013/ReinforcementLearning_experiment/tree/master/VAE-GAIL)
+- [ ] 参考复现 Robust Imitation of Diverse Behaviors

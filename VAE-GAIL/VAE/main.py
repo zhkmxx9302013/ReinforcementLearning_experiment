@@ -27,13 +27,13 @@ def train():
     mb_size = 64
     z_dim = 100
     X_dim = mnist.train.images.shape[1]
-    y_dim = mnist.train.labels.shape[1]
     h_dim = 128
-    c = 0
-    lr = 1e-3
+    timesteps = 28
+    num_input = 28
 
 
-    vae_obj =  Vae(X_dim, h_dim, z_dim)
+
+    vae_obj =  Vae(X_dim, h_dim, z_dim,  timesteps, lstm_unit_size=100, action_num=10, state_num=num_input)
 
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
@@ -46,11 +46,13 @@ def train():
 
         i = 0
         for it in range(1000000):
-            X_mb, _ = mnist.train.next_batch(mb_size)
-            loss = vae_obj.get_loss(X_mb)
+            X_mb, y_mb = mnist.train.next_batch(mb_size)
+            # Reshape data to get 28 seq of 28 elements
+            batch_x = X_mb.reshape((mb_size, timesteps, num_input))
+            loss = vae_obj.get_loss(batch_x)
             if it % 1000 == 0:
                 if it % 5000 == 0:
-                    saver_vae.save(sess, "./checkpoint_dir/vae/vae", global_step=it, write_meta_graph=True)
+                    saver_vae.save(sess, "./checkpoint_dir/vae_bilstm/vae", global_step=it, write_meta_graph=True)
                 print('Iter: {}'.format(it))
                 print('Loss: {:.4}'.format(loss))
                 print()

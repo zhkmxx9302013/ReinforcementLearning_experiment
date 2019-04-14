@@ -4,8 +4,11 @@ import tensorflow as tf
 
 
 class Vae:
-    def __init__(self,X_dim, h_dim, z_dim):
-        self.encoder = Encoder(X_dim, h_dim, z_dim)
+    def __init__(self, X_dim, h_dim, z_dim, time_steps, lstm_unit_size, action_num, state_num):
+        self.time_steps = time_steps
+        self.X_dim = X_dim
+        self.state_num = state_num
+        self.encoder = Encoder(X_dim, h_dim, z_dim, time_steps, lstm_unit_size, action_num, state_num)
         self.encoder.create_network()
         self.decoder = Decoder(X_dim, h_dim, z_dim)
         self.train_ops()
@@ -15,9 +18,11 @@ class Vae:
         z_sample = self.encoder.sample_z(self.encoder.z_mu, self.encoder.z_var)
         self.logits, _ = self.decoder.create_network(z_sample, False) #用于VAE训练
         _, self.prob = self.decoder.create_network(None, True) #用于从正态分布噪声 decoder出结果
+        # self.logits = tf.reshape(self.logits, [-1, self.time_steps, self.state_num])
+        x_for_loss = tf.reshape(self.encoder.X, [-1, self.X_dim])
 
         # reconstruction loss ::  E[log P(X|z)] 标签为输入样本X，拟合为decoder logits
-        self.recon_loss = tf.reduce_sum(tf.nn.sigmoid_cross_entropy_with_logits(logits=self.logits, labels=self.encoder.X), 1)
+        self.recon_loss = tf.reduce_sum(tf.nn.sigmoid_cross_entropy_with_logits(logits=self.logits, labels=x_for_loss), 1)
 
         # KL loss  ::  D_KL(Q(z|X) || P(z)); calculate in closed form as both dist. are Gaussian
         self.kl_loss = 0.5 * tf.reduce_sum(tf.exp(self.encoder.z_var) + self.encoder.z_mu ** 2 - 1. - self.encoder.z_var, 1)

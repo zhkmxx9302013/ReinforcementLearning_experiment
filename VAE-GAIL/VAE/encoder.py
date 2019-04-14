@@ -1,33 +1,54 @@
 import tensorflow as tf
 import tensorflow.contrib.slim as slim
+from tensorflow.contrib import rnn
 
 class Encoder:
-    def __init__(self, x_dim, hidden_size, z_dim):
+    def __init__(self, x_dim, hidden_size, z_dim, time_steps, lstm_unit_size, action_num, state_num):
         self.X_dim = x_dim
         self.h_dim = hidden_size
         self.z_dim = z_dim
+        self.state_num = state_num
+
+        self.time_steps = time_steps
+        self.lstm_unit_size = lstm_unit_size
+        self.action_num = action_num
         pass
 
     def create_network(self):
         with tf.name_scope('encoder') as scope:
-            self.X = tf.placeholder(tf.float32, shape=[None, self.X_dim], name='encoder_input_x')
-            with tf.variable_scope('encoder_layer_1'):
-                self.layer1 = slim.fully_connected(self.X,
+            self.X = tf.placeholder(tf.float32, shape=[None, self.time_steps, self.state_num], name='encoder_input_x')
+            # Unstack to get a list of 'time_steps' tensors of shape (batch_size, num_input)
+            x = tf.unstack(self.X, self.time_steps, 1)
+
+            # Forward direction cell
+            lstm_fw_cell = rnn.BasicLSTMCell(self.lstm_unit_size, forget_bias=1.0)
+            # Backward direction cell
+            lstm_bw_cell = rnn.BasicLSTMCell(self.lstm_unit_size, forget_bias=1.0)
+
+            with tf.variable_scope('encoder_bi_lstm'):
+                outputs, _, _ = rnn.static_bidirectional_rnn(lstm_fw_cell, lstm_bw_cell, x, dtype=tf.float32)
+
+
+
+            with tf.variable_scope('encoder_lstm_output_avg'):
+                self.layer_avg = tf.reduce_mean([outputs[0]], 0)
+
+            with tf.variable_scope('encoder_lstm_linear'):
+                self.layer_after_avg = slim.fully_connected(self.layer_avg,
                                           self.h_dim,
-                                          activation_fn=tf.nn.relu,
+                                          activation_fn=tf.nn.leaky_relu,
                                           weights_initializer=tf.contrib.layers.xavier_initializer(),
                                           biases_initializer=tf.constant_initializer(0.0)
                                           )
-
             with tf.variable_scope('encoder_latent_mu'):
-                self.z_mu  = slim.fully_connected(self.layer1,
+                self.z_mu  = slim.fully_connected(self.layer_after_avg,
                                           self.z_dim,
                                           activation_fn=None,
                                           weights_initializer=tf.contrib.layers.xavier_initializer(),
                                           biases_initializer=tf.constant_initializer(0.0)
                                           )
             with tf.variable_scope('encoder_latent_var'):
-                self.z_var = slim.fully_connected(self.layer1,
+                self.z_var = slim.fully_connected(self.layer_after_avg,
                                           self.z_dim,
                                           activation_fn=None,
                                           weights_initializer=tf.contrib.layers.xavier_initializer(),

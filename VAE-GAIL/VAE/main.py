@@ -25,7 +25,7 @@ def plot(samples):
 def train():
     mnist = input_data.read_data_sets('../../MNIST_data', one_hot=True)
     mb_size = 64
-    z_dim = 2
+    z_dim = 100
     X_dim = mnist.train.images.shape[1]
     y_dim = mnist.train.labels.shape[1]
     h_dim = 128
@@ -90,5 +90,5 @@ def test():
 
 
 if __name__ == '__main__':
-    # train()
-    test()
+    train()
+    # test()

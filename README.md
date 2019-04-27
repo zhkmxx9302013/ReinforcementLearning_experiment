@@ -46,8 +46,7 @@
 
 1. GAIL (WGAN-GP)
 2. PPO2
-3. exploration curriculum
-4. seprate net
+3. seprate net
 
 代码在[GAIL](https://github.com/zhkmxx9302013/ReinforcementLearning_experiment/tree/master/GAIL)
 

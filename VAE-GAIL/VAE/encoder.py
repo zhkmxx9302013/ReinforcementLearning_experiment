@@ -3,8 +3,8 @@ import tensorflow.contrib.slim as slim
 from tensorflow.contrib import rnn
 
 class Encoder:
-    def __init__(self, x_dim, hidden_size, z_dim, time_steps, lstm_unit_size, action_num, state_num):
-        self.X_dim = x_dim
+    def __init__(self, hidden_size, z_dim, time_steps, lstm_unit_size, action_num, state_num):
+
         self.h_dim = hidden_size
         self.z_dim = z_dim
         self.state_num = state_num
@@ -16,17 +16,19 @@ class Encoder:
 
     def create_network(self):
         with tf.name_scope('encoder') as scope:
-            self.X = tf.placeholder(tf.float32, shape=[None, self.time_steps, self.state_num], name='encoder_input_x')
+            self.state_in = tf.placeholder(tf.float32, shape=[None, self.time_steps, self.state_num], name='encoder_input_x')
             # Unstack to get a list of 'time_steps' tensors of shape (batch_size, num_input)
-            x = tf.unstack(self.X, self.time_steps, 1)
+            # unstack_state = tf.unstack(self.state_in, self.time_steps, 1)
 
-            # Forward direction cell
+            # 前向 cell
             lstm_fw_cell = rnn.BasicLSTMCell(self.lstm_unit_size, forget_bias=1.0)
-            # Backward direction cell
+            # 反向 cell
             lstm_bw_cell = rnn.BasicLSTMCell(self.lstm_unit_size, forget_bias=1.0)
 
             with tf.variable_scope('encoder_bi_lstm'):
-                outputs, _, _ = rnn.static_bidirectional_rnn(lstm_fw_cell, lstm_bw_cell, x, dtype=tf.float32)
+                # outputs, _, _ = rnn.static_bidirectional_rnn(lstm_fw_cell, lstm_bw_cell, unstack_state, dtype=tf.float32)
+                outputs, _ = tf.nn.bidirectional_dynamic_rnn(lstm_fw_cell, lstm_bw_cell, self.state_in, dtype=tf.float32)  # [batch_szie, max_time, depth]
+
 
 
 
@@ -70,8 +72,9 @@ class Encoder:
     def get_model_param_list(self):
         return [variable for variable in tf.trainable_variables('encoder')]
 
-if __name__ == '__main__':
-    e =Encoder(1,1,1)
-    e.create_network()
-    e.sample_z(1,1)
-    print(e.X, e.z_var, e.z_mu, e.latent)
+# if __name__ == '__main__':
+#     e =Encoder(1,1,1)
+#     e.create_network()
+#     e.sample_z(1,1)
+#     print(e.state_in, e.z_var, e.z_mu, e.latent)
+
